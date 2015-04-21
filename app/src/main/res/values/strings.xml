@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Application</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- button name strings -->
+    <string name="true_button">True!</string>
+    <string name="false_button">False :( </string>
+    <string name="next_button">Next</string>
+    <string name="prev_button">Prev</string>
+    <string name="cheat_button">Cheat!</string>
+
+    <!-- questions -->
+    <string name="question_one">This is the first question</string>
+    <string name="question_two">This is the second question</string>
+    <string name="question_three">This is the third question</string>
+    <string name="question_four">This is the fourth question</string>
+
+    <!-- toast messages -->
+    <string name="response_correct">That\'s correct!</string>
+    <string name="response_wrong">Sorry, that\'s wrong!</string>
+    <string name="response_cheat">Cheating is not a good thing!</string>
+
+    <string name="warning_text">Are you sure you want to see the answer?</string>
+    <string name="show_answer">Show Answer</string>
+</resources>
