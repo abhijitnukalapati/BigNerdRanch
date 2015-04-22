@@ -23,7 +23,6 @@ public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
 
-
     public static CrimeFragment newInstance(){
         CrimeFragment crimeFragment = new CrimeFragment();
         return crimeFragment;
