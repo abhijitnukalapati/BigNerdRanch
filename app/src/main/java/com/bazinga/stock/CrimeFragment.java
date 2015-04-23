@@ -7,9 +7,14 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.bazinga.stock.model.Crime;
+
+import java.text.SimpleDateFormat;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -19,7 +24,9 @@ import butterknife.InjectView;
  */
 public class CrimeFragment extends Fragment {
 
-    @InjectView(R.id.crime_title) EditText mCrimeTitleField;
+    @InjectView(R.id.crime_title) EditText vCrimeTitleField;
+    @InjectView(R.id.crime_date) Button vDateButton;
+    @InjectView(R.id.crime_solved) CheckBox vCrimeSolvedCheckBox;
 
     private Crime mCrime;
 
@@ -39,7 +46,7 @@ public class CrimeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_crime, container, false);
         ButterKnife.inject(this, view);
 
-        mCrimeTitleField.addTextChangedListener(new TextWatcher() {
+        vCrimeTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 // do nothing
@@ -53,6 +60,17 @@ public class CrimeFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 // do nothing
+            }
+        });
+
+        // display the date in the format "Tuesday, Oct 12, 2012"
+        vDateButton.setText(new SimpleDateFormat("EEEE, MMM dd, yyyy").format(mCrime.getDate()));
+        vDateButton.setEnabled(false); // we don't want the user to interact with the button
+
+        vCrimeSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mCrime.setSolved(isChecked);
             }
         });
 
