@@ -4,7 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import com.bazinga.stock.CrimeFragment;
+import com.bazinga.stock.fragment.CrimeFragment;
 import com.bazinga.stock.R;
 
 /**

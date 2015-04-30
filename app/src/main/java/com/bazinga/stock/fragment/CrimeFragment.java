@@ -1,4 +1,4 @@
-package com.bazinga.stock;
+package com.bazinga.stock.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 
+import com.bazinga.stock.R;
 import com.bazinga.stock.model.Crime;
 
 import java.text.SimpleDateFormat;
