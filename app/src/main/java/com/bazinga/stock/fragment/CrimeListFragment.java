@@ -18,6 +18,9 @@ import com.bazinga.stock.model.CrimeLab;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 /**
  * Created by abhijitnukalapati on 4/29/15.
  */
@@ -66,10 +69,7 @@ public class CrimeListFragment extends ListFragment {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_crime, null);
 
                 // build the view holder
-                viewHolder = new ViewHolder();
-                viewHolder.crimeTitle = (TextView) convertView.findViewById(R.id.item_crime_title);
-                viewHolder.crimeDate = (TextView) convertView.findViewById(R.id.item_crime_date);
-                viewHolder.crimeSolvedCheckBox = (CheckBox) convertView.findViewById(R.id.item_crime_checkbox);
+                viewHolder = new ViewHolder(convertView);
                 convertView.setTag(viewHolder);
             } else {
                 // avoid using findViewById as the holder is saved
@@ -88,9 +88,13 @@ public class CrimeListFragment extends ListFragment {
     }
 
     // Holds views for each crime list item row
-    private static class ViewHolder {
-        TextView crimeTitle;
-        TextView crimeDate;
-        CheckBox crimeSolvedCheckBox;
+    static class ViewHolder {
+        @InjectView(R.id.item_crime_title) TextView crimeTitle;
+        @InjectView(R.id.item_crime_date) TextView crimeDate;
+        @InjectView(R.id.item_crime_checkbox) CheckBox crimeSolvedCheckBox;
+
+        public ViewHolder(View view) {
+            ButterKnife.inject(this, view);
+        }
     }
 }
