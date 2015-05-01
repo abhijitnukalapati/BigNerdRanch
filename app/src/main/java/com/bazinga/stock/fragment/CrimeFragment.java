@@ -34,8 +34,12 @@ public class CrimeFragment extends Fragment {
     public static String EXTRA_CRIME_ID = "com.bazinga.stock.EXTRA_CRIME_ID";
     private Crime mCrime;
 
-    public static CrimeFragment newInstance(){
+    public static CrimeFragment newInstance(UUID id){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(EXTRA_CRIME_ID, id);
+
         CrimeFragment crimeFragment = new CrimeFragment();
+        crimeFragment.setArguments(bundle);
         return crimeFragment;
     }
 
@@ -43,10 +47,12 @@ public class CrimeFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // retrieve the data passed to the activity
-        // as an extra
-        UUID id = (UUID) getActivity().getIntent().getSerializableExtra(EXTRA_CRIME_ID);
-        mCrime = CrimeLab.getInstance(getActivity()).getCrime(id);
+        // get data from the arguments supplied to the
+        // fragment
+        if (getArguments() != null) {
+            UUID id = (UUID) getArguments().getSerializable(EXTRA_CRIME_ID);
+            mCrime = CrimeLab.getInstance(getActivity()).getCrime(id);
+        }
     }
 
     @Override
