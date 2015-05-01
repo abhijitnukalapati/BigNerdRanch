@@ -1,9 +1,8 @@
 package com.bazinga.stock.fragment;
 
 import android.app.ListFragment;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -12,6 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bazinga.stock.R;
+import com.bazinga.stock.activity.CrimeActivity;
 import com.bazinga.stock.model.Crime;
 import com.bazinga.stock.model.CrimeLab;
 
@@ -43,7 +43,11 @@ public class CrimeListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         // get item from the adapter
         Crime crime = ((CrimeAdapter) getListAdapter()).getItem(position);
-        Log.d(TAG, crime.getTitle());
+
+        // start the crime activity to view the crime
+        Intent crimeActivityIntent = new Intent(getActivity(), CrimeActivity.class);
+        crimeActivityIntent.putExtra(CrimeFragment.EXTRA_CRIME_ID, crime.getId());
+        startActivity(crimeActivityIntent);
     }
 
     private class CrimeAdapter extends ArrayAdapter<Crime> {
