@@ -36,20 +36,13 @@ public class CrimeListFragment extends ListFragment {
         super.onCreate(savedInstanceState);
         getActivity().setTitle(R.string.crimes_title);
 
-        // create the list adapter with the view being
-        // a simple text view;
-        // the array adapter invokes each crime object's toString()
-        // to display text
-        ArrayAdapter<Crime> crimeArrayAdapter = new ArrayAdapter<>(getActivity(),
-                android.R.layout.simple_list_item_1, CrimeLab.getInstance(getActivity()).getCrimes());
-
-        setListAdapter(crimeArrayAdapter);
+        setListAdapter(new CrimeAdapter(CrimeLab.getInstance(getActivity()).getCrimes()));
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // get item from the adapter
-        Crime crime = (Crime) getListAdapter().getItem(position);
+        Crime crime = ((CrimeAdapter) getListAdapter()).getItem(position);
         Log.d(TAG, crime.getTitle());
     }
 
@@ -61,26 +54,36 @@ public class CrimeListFragment extends ListFragment {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder viewHolder;
+
             // If we weren't given a view, inflate one
             if (convertView == null) {
+                // inflate the layout
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_crime, null);
-            }
 
+                // build the view holder
+                viewHolder = new ViewHolder();
+                viewHolder.crimeTitle = (TextView) convertView.findViewById(R.id.item_crime_title);
+                viewHolder.crimeDate = (TextView) convertView.findViewById(R.id.item_crime_date);
+                viewHolder.crimeSolvedCheckBox = (CheckBox) convertView.findViewById(R.id.item_crime_checkbox);
+                convertView.setTag(viewHolder);
+            } else {
+                // avoid using findViewById as the holder is saved
+                // as a tag for the view
+                viewHolder = (ViewHolder) convertView.getTag();
+            }
 
             Crime crime = getItem(position);
 
-            TextView titleTextView = (TextView) convertView.findViewById(R.id.item_crime_title);
-            TextView dateTextView = (TextView) convertView.findViewById(R.id.item_crime_date);
-            CheckBox solvedCheckBox = (CheckBox) convertView.findViewById(R.id.item_crime_checkbox);
-
-            titleTextView.setText(crime.getTitle());
-            dateTextView.setText(crime.getDate().toString());
-            solvedCheckBox.setChecked(crime.isSolved());
+            viewHolder.crimeTitle.setText(crime.getTitle());
+            viewHolder.crimeDate.setText(crime.getDate().toString());
+            viewHolder.crimeSolvedCheckBox.setChecked(crime.isSolved());
 
             return convertView;
         }
     }
 
+    // Holds views for each crime list item row
     private static class ViewHolder {
         TextView crimeTitle;
         TextView crimeDate;
