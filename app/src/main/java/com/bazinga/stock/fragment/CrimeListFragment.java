@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bazinga.stock.R;
-import com.bazinga.stock.activity.CrimeActivity;
+import com.bazinga.stock.activity.CrimePagerActivity;
 import com.bazinga.stock.model.Crime;
 import com.bazinga.stock.model.CrimeLab;
 
@@ -57,7 +57,7 @@ public class CrimeListFragment extends ListFragment {
         Crime crime = ((CrimeAdapter) getListAdapter()).getItem(position);
 
         // start the crime activity to view the crime
-        Intent crimeActivityIntent = new Intent(getActivity(), CrimeActivity.class);
+        Intent crimeActivityIntent = new Intent(getActivity(), CrimePagerActivity.class);
         crimeActivityIntent.putExtra(CrimeFragment.EXTRA_CRIME_ID, crime.getId());
         startActivity(crimeActivityIntent);
     }
