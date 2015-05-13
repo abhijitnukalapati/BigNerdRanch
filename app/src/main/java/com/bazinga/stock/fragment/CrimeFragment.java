@@ -97,16 +97,16 @@ public class CrimeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 //                // show the date picker, so that the user can change the date
-//                DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mCrime.getDate());
+                DatePickerFragment datePickerFragment = DatePickerFragment.newInstance(mCrime.getDate());
+
+                // set the target fragment, so that we can report back any changes
+                datePickerFragment.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
+                datePickerFragment.show(getFragmentManager(), DIALOG_CRIME_DATE);
+
+//                TimePickerFragment timePickerFragment = TimePickerFragment.newInstance(
+//                        Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE));
 //
-//                // set the target fragment, so that we can report back any changes
-//                datePickerFragment.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
-//                datePickerFragment.show(getFragmentManager(), DIALOG_CRIME_DATE);
-
-                TimePickerFragment timePickerFragment = TimePickerFragment.newInstance(
-                        Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE));
-
-                timePickerFragment.show(getFragmentManager(), DIALOG_CRIME_TIME);
+//                timePickerFragment.show(getFragmentManager(), DIALOG_CRIME_TIME);
 
             }
         });
