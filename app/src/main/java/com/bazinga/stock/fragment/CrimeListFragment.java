@@ -15,6 +15,8 @@ import com.bazinga.stock.activity.CrimePagerActivity;
 import com.bazinga.stock.model.Crime;
 import com.bazinga.stock.model.CrimeLab;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +66,8 @@ public class CrimeListFragment extends ListFragment {
 
     private class CrimeAdapter extends ArrayAdapter<Crime> {
 
+        private final DateFormat DATE_FORMAT = new SimpleDateFormat("EEEE, MMM dd, yyyy");
+
         public CrimeAdapter(List<Crime> crimeList) {
             super(getActivity(), 0, crimeList); // pass 0 since we are using a custom layout for each row
         }
@@ -89,7 +93,7 @@ public class CrimeListFragment extends ListFragment {
             Crime crime = getItem(position);
 
             viewHolder.crimeTitle.setText(crime.getTitle());
-            viewHolder.crimeDate.setText(crime.getDate().toString());
+            viewHolder.crimeDate.setText(DATE_FORMAT.format(crime.getDate()));
             viewHolder.crimeSolvedCheckBox.setChecked(crime.isSolved());
 
             return convertView;

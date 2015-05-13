@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+A simple date picker. Starting with Android L, the default layout has the
+calendar view and cannot be hidden only using the attribute 'calendarViewShown'.
+We have to force the standard picker interface by using the datePickerMode
+attribute
+-->
+<DatePicker xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_date_picker"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:datePickerMode="spinner"
+    android:calendarViewShown="false"/>

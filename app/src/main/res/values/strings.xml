@@ -15,4 +15,5 @@
     <!-- Crime List Row strings -->
     <string name="list_item_crime_date">Crime date</string>
     <string name="list_item_crime_title">Crime title</string>
+    <string name="date_picker_title">Date of crime</string>
 </resources>
